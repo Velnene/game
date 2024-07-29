@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	width: 100vw;
+	height: 100vh;
+	background-color: chocolate;
+	background-image: url('../public/bg.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+body {
+	overflow: hidden;
+}
+
+.card {
+	font-size: 100px;
+}
