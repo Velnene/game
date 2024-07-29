@@ -19,5 +19,6 @@ export const COLORS = {
   secondart: brown[500],
   black: '#000',
   white: '#EDF1EE',
-  ...yellow
+  yellow,
+  brown,
 }
