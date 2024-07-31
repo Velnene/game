@@ -13,4 +13,7 @@
     box-shadow: 6px 6px #fde047;
   }
 	}
+  &.circle {
+    @apply rounded-full py-3 px-3;
+  }
 }

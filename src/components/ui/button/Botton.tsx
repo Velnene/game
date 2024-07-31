@@ -3,7 +3,8 @@ import { ReactNode } from 'react'
 import style from './Button.module.scss'
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 	children: ReactNode,
-	variant?: 'primary' | 'secondary'
+	variant: 'primary' | 'secondary',
+	isCircle?: boolean 
 }
 
 export function Butoon({ children, variant = 'primary', ...rest }: Props) {
@@ -11,7 +12,8 @@ export function Butoon({ children, variant = 'primary', ...rest }: Props) {
 		<button
 			className={cn(
 				style.button,
-				{ [style.secondary]: variant === 'secondary' },
+				style[variant],
+				style.circle,
 				rest.className
 			)}
 			{...rest}
