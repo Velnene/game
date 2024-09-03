@@ -6,6 +6,7 @@ export interface IGameCard extends ICard {
 	id: number,
 	isOnBoard: boolean,
 	isCanAttack: boolean,
+	
 }
 
 export interface IHero {
@@ -15,6 +16,7 @@ export interface IHero {
 }
 
 export interface IGameStore {
+	isGameStarted: boolean,
 	player: IHero,
 	opponent: IHero,
   currentTurn: TPlayer,

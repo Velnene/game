@@ -1,4 +1,4 @@
-import { EnumTypeCard, ICard } from "../../types/cards";
+import { EnumTypeCard, ICard } from '../../types/cards'
 
 export const CARDS: ICard[] = [
 	{
@@ -6,90 +6,105 @@ export const CARDS: ICard[] = [
 		mana: 1,
 		health: 1,
 		attack: 1,
+		imageUrl: '/public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'CSS',
 		mana: 1,
 		health: 1,
 		attack: 2,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'JavaScript',
 		mana: 3,
 		health: 2,
 		attack: 4,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'React',
 		mana: 2,
 		health: 4,
 		attack: 3,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Vue',
 		mana: 4,
 		health: 2,
 		attack: 3,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'TypeScript',
 		mana: 3,
 		health: 1,
 		attack: 6,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Next.js',
 		mana: 2,
 		health: 5,
 		attack: 3,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Svelt',
 		mana: 3,
 		health: 4,
 		attack: 3,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Nginx',
 		mana: 2,
 		health: 2,
 		attack: 3,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Tailwind',
 		mana: 1,
 		health: 2,
 		attack: 1,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Webpack',
 		mana: 2,
 		health: 2,
 		attack: 2,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Git',
 		mana: 3,
 		health: 4,
 		attack: 3,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Gatsby',
 		mana: 4,
 		health: 6,
 		attack: 1,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'Redux',
 		mana: 2,
 		health: 7,
 		attack: 1,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 	{
 		name: 'GOLD',
 		mana: 6,
 		health: 6,
 		attack: 6,
-    type: EnumTypeCard.taunt
+		type: EnumTypeCard.taunt,
+		imageUrl: './public/assets/cards/exemple.jpg',
 	},
 ]
