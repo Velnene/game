@@ -9,7 +9,7 @@ import { attackHeroAction } from './actions/attackHero'
 const initialPlayerData: IHero = {
 	deck: createDeck(),
 	health: 20,
-	mana: 1,
+	mana: 20,
 }
 
 const initialGameData: Pick<IGameStore, 'player' | 'opponent' | 'currentTurn' | 'isGameOver' | 'isGameStarted'> = {

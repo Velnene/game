@@ -47,7 +47,7 @@ export function HandCard({
 							rotate,
 						}
 			}
-			transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+			transition={{ type: 'just', stiffness: 300, damping: 20 }}
 		>
 			<img
 				src={

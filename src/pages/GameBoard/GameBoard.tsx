@@ -10,8 +10,8 @@ export function GameBoard() {
 	return (
 		<>
 			<div
-				className='relative h-screen w-full grid grid-rows-3'
-				style={{ gridTemplateRows: '1fr 1fr 1fr' }}
+				className='relative h-screen w-full grid grid-rows-2'
+				style={{ gridTemplateRows: '1fr 1fr' }}
 			>
 				<section>
 					<PlayerInfo player={opponent} typePlayer='opponent' />
@@ -33,15 +33,12 @@ export function GameBoard() {
 								/>
 							))}
 					</div>
+					<BoardCard deck={opponent.deck} isPlayer={false} />
 				</section>
-				<section className='flex flex-col gap-y-10 justify-center items-center'>
-					<BoardCard deck={opponent.deck} isDraggable={false} />
-					<BoardCard deck={player.deck} isDraggable={true} />
-				</section>
-
 				<section>
+					<BoardCard deck={player.deck} isPlayer={true} />
 					<PlayerInfo player={player} typePlayer='player' />
-					<div className='bottom-10 absolute w-full'>
+					<div className='bottom-0 absolute w-full'>
 						<div className='flex relative justify-center mx-auto'>
 							{player.deck
 								.filter((card) => !card.isOnBoard)
