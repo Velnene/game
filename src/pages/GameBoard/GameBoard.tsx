@@ -1,8 +1,8 @@
 import { useGameStore } from '../../store/game.store'
 import { PlayerInfo } from './PlayerInfo'
 import { HandCard } from './HandCard'
-import { getSstyleRotation } from './hand-card/get-style-rotation'
 import { BoardCard } from './board-card/BoardCard'
+import { MAX_HAND_CARDS } from '../../constans/game/core.constants'
 
 export function GameBoard() {
 	const { player, opponent, playCard } = useGameStore()
@@ -18,7 +18,7 @@ export function GameBoard() {
 					<div className='flex justify-center'>
 						{opponent.deck
 							.filter((card) => !card.isOnBoard)
-							.slice(0, 5)
+							.slice(0, MAX_HAND_CARDS)
 							.map((card, index, arr) => (
 								<HandCard
 									card={card}
@@ -42,7 +42,7 @@ export function GameBoard() {
 						<div className='flex relative justify-center mx-auto'>
 							{player.deck
 								.filter((card) => !card.isOnBoard)
-								.slice(0, 5)
+								.slice(0, MAX_HAND_CARDS)
 								.map((card, index, arr) => (
 									<HandCard
 										card={card}
