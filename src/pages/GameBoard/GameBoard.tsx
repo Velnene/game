@@ -2,13 +2,17 @@ import { useGameStore } from '../../store/game.store'
 import { PlayerInfo } from './PlayerInfo'
 import { HandCard } from './HandCard'
 import { getSstyleRotation } from './hand-card/get-style-rotation'
+import { BoardCard } from './board-card/BoardCard'
 
 export function GameBoard() {
 	const { player, opponent, playCard } = useGameStore()
 
 	return (
 		<>
-			<div className='relative h-screen w-full grid grid-rows-3'>
+			<div
+				className='relative h-screen w-full grid grid-rows-3'
+				style={{ gridTemplateRows: '1fr 1fr 1fr' }}
+			>
 				<section>
 					<PlayerInfo player={opponent} typePlayer='opponent' />
 					<div className='flex justify-center'>
@@ -30,33 +34,11 @@ export function GameBoard() {
 							))}
 					</div>
 				</section>
-
-				<section className='flex flex-col gap-y-10'>
-					{opponent.deck
-						.filter((card) => card.isOnBoard)
-						.map((card) => (
-							<button
-								className='h-20 w-20 bg-yellow-300 inline-block shadow mx-1 rounded-lg'
-								key={card.id}
-							>
-								<img
-									alt={card.name}
-									src={require('../../../public/assets/cards/exemple.jpg')}
-									draggable='false'
-								/>
-							</button>
-						))}
-					{player.deck
-						.filter((card) => card.isOnBoard)
-						.map((card) => (
-							<button
-								className='h-20 w-20 bg-yellow-300 inline-block shadow mx-1 rounded-lg'
-								key={card.id}
-							>
-								<img alt={card.name} src={card.imageUrl}></img>
-							</button>
-						))}
+				<section className='flex flex-col gap-y-10 justify-center items-center'>
+					<BoardCard deck={opponent.deck} isDraggable={false} />
+					<BoardCard deck={player.deck} isDraggable={true} />
 				</section>
+
 				<section>
 					<PlayerInfo player={player} typePlayer='player' />
 					<div className='bottom-10 absolute w-full'>
