@@ -1,3 +1,4 @@
+import { Badge } from '../../components/ui/Badge'
 import { IHero, TPlayer } from '../../types/game.store.types'
 import cn from 'clsx'
 
@@ -15,8 +16,8 @@ export function PlayerInfo({ player, typePlayer }: Props) {
 			})}
 		>
 			<h2>{isPalyer ? 'Player' : 'Opponent'}</h2>
-			<p>HP: {player.health}</p>
-			<p>Mana: {player.mana}</p>
+			<Badge value={25} maxValue={26} color='red' />
+			<Badge value={1} maxValue={6} color='blue' />
 		</div>
 	)
 }
