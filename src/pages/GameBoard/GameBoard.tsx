@@ -2,7 +2,12 @@ import { useGameStore } from '../../store/game.store'
 import { PlayerInfo } from './PlayerInfo'
 import { HandCard } from './HandCard'
 import { BoardCard } from './board-card/BoardCard'
-import { MAX_HAND_CARDS } from '../../constans/game/core.constants'
+import {
+	INITIAL_MANA,
+	MAX_HAND_CARDS,
+	MAX_MANA,
+} from '../../constans/game/core.constants'
+import { PlayerMana } from './player-info/mana/PlayerMana'
 
 export function GameBoard() {
 	const { player, opponent, playCard } = useGameStore()
@@ -38,6 +43,7 @@ export function GameBoard() {
 				<section>
 					<BoardCard deck={player.deck} isPlayer={true} />
 					<PlayerInfo player={player} typePlayer='player' />
+					<PlayerMana mana={INITIAL_MANA} maxMana={MAX_MANA} />
 					<div className='bottom-0 absolute w-full'>
 						<div className='flex relative justify-center mx-auto'>
 							{player.deck
