@@ -8,6 +8,7 @@ import {
 	MAX_MANA,
 } from '../../constans/game/core.constants'
 import { PlayerMana } from './player-info/mana/PlayerMana'
+import { EndTurnBotton } from '../../components/ui/button/EndTurnButton'
 
 export function GameBoard() {
 	const { player, opponent, playCard } = useGameStore()
@@ -40,10 +41,11 @@ export function GameBoard() {
 					</div>
 					<BoardCard deck={opponent.deck} isPlayer={false} />
 				</section>
+				<EndTurnBotton />
 				<section>
 					<BoardCard deck={player.deck} isPlayer={true} />
 					<PlayerInfo player={player} typePlayer='player' />
-					<PlayerMana mana={INITIAL_MANA} maxMana={MAX_MANA} />
+					<PlayerMana mana={player.mana} maxMana={MAX_MANA} />
 					<div className='bottom-0 absolute w-full'>
 						<div className='flex relative justify-center mx-auto'>
 							{player.deck

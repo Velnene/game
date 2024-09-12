@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
-import { Butoon } from '../../../components/ui/button/Botton'
+import { Butoon } from '../../../components/ui/button/Button'
 import { Pause, Play } from 'lucide-react'
-// НЕ работает аудио. Не находит музыку по ссылке 
+// НЕ работает аудио. Не находит музыку по ссылке
 export function AudioPlayer() {
 	const audioRef = useRef<HTMLAudioElement>(null)
 	const [isPlaying, setIsPlaying] = useState(false)

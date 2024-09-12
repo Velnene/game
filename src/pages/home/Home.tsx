@@ -1,5 +1,5 @@
 import { useTransition } from 'react'
-import { Butoon } from '../../components/ui/button/Botton'
+import { Butoon } from '../../components/ui/button/Button'
 import { useGameStore } from '../../store/game.store'
 import { AudioPlayer } from '../GameBoard/audio-player/AudioPlayer'
 import { MyLoader } from '../../components/ui/loader/Loader'
