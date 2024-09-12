@@ -18,7 +18,6 @@ export function PlayerInfo({ player, typePlayer }: Props) {
 		>
 			<h2>{isPalyer ? 'Player' : 'Opponent'}</h2>
 			<Badge value={INITIAL_HP} maxValue={MAX_HP} color='red' />
-			<Badge value={INITIAL_MANA} maxValue={MAX_MANA} color='blue' />
 		</div>
 	)
 }

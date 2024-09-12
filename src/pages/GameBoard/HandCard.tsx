@@ -28,8 +28,8 @@ export function HandCard({
 	return (
 		<motion.button
 			className={cn(
-				'h-70 w-40 bg-yellow-300 inline-block shadow -ml-4 rounded-lg cursor-pointer',
-				{ 'opacity-50': isDisabled }
+				' w-40 bg-yellow-300 inline-block shadow -ml-9 rounded-lg',
+				{ 'opacity-50': isDisabled, 'cursor-default': isHided }
 			)}
 			style={style}
 			disabled={isDisabled}

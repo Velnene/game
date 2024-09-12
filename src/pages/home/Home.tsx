@@ -1,6 +1,6 @@
-import { Settings } from 'lucide-react'
 import { Butoon } from '../../components/ui/button/Botton'
 import { useGameStore } from '../../store/game.store'
+import { AudioPlayer } from '../GameBoard/audio-player/AudioPlayer'
 
 export function Home() {
 	const { startGame } = useGameStore()
@@ -11,6 +11,7 @@ export function Home() {
 				<Butoon variant='primary' onClick={startGame} isCircle>
 					Start
 				</Butoon>
+				<AudioPlayer />
 				<div className='card'></div>
 			</div>
 		</div>

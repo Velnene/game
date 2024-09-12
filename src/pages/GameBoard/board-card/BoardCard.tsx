@@ -14,7 +14,7 @@ export function BoardCard({ deck, isPlayer }: Props) {
 				.filter((card) => card.isOnBoard)
 				.map((card) => (
 					<motion.button
-						className='w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center'
+						className='w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default'
 						key={card.id}
 						initial={{ scale: 0.5, rotate: -15, y: showCard, opacity: 0, x: -10 }}
 						animate={{ scale: 1, rotate: 0, y: 0, opacity: 1, x: 0 }}

@@ -20,6 +20,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.mp3$/,
+				use: [
+					{
+						loader: 'file-loader',
+					},
+				],
+			},
+			{
 				test: /\.(js|jsx)$/,
 				exclude: /nodeModules/,
 				use: {
@@ -84,7 +92,7 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
+		extensions: ['.js', '.jsx', '.tsx', '.ts', '.json', '.mp3'],
 	},
 	plugins: [
 		new HTMLWebpackPlugins({
