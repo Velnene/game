@@ -17,7 +17,7 @@ export function AudioPlayer() {
 	return (
 		<Butoon variant='secondary' isCircle onClick={handlePlayPause}>
 			<audio ref={audioRef} loop>
-				<source src='../../../../music/a.mp3' type='audio/mp3' />
+				<source src={'../../../../music/a.org'} type='audio/mp3' />
 				<a href='../../../../music/a.mp3'>link to the audio</a>
 				Тег audio не поддерживается вашим браузером.
 			</audio>

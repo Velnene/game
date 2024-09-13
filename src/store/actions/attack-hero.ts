@@ -21,15 +21,16 @@ export const attackHeroAction = (
 	if (attacker && attacker.isCanAttack && !opponentTount) {
 		opponent.health -= attacker.attack
 		attacker.isCanAttack = false
-
+console.log(opponent.health)
 		if (opponent.health <= 0) {
 			state.isGameOver = true
+			state.isGameStarted = false
 		}
 	}
 	return {
 		player: state.player,
 		opponent: state.opponent,
 		isGameOver: state.isGameOver,
-		isGameStarted: false,
+		isGameStarted: state.isGameStarted,
 	}
 }

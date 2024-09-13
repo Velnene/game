@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { IGameCard } from '../../../types/game.store.types'
 import cn from 'clsx'
 import { useGameStore } from '../../../store/game.store'
+import { useEnemyTarget } from './useEnemyTarget'
+import { useSelectAttacer } from '../../../store/select-attacer'
 
 interface Props {
 	deck: IGameCard[]
@@ -10,8 +12,19 @@ interface Props {
 
 export function BoardCard({ deck, isPlayer }: Props) {
 	const { returnCard, player } = useGameStore()
-
+	const { handleSelectTarget } = useEnemyTarget()
+	const { setCardAttacerrId, cardAttackerId } = useSelectAttacer()
 	const showCard = isPlayer ? 200 : -200
+
+	const handleClick = (card: IGameCard) => {
+		if (isPlayer) {
+			card.isCanAttack && player
+				? setCardAttacerrId(card.id)
+				: returnCard(card.id)
+		} else {
+			handleSelectTarget(card.id)
+		}
+	}
 	return (
 		<div className='flex justify-center'>
 			{deck
@@ -19,10 +32,13 @@ export function BoardCard({ deck, isPlayer }: Props) {
 				.map((card) => (
 					<motion.button
 						className={cn(
-							'w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default border-4 transition-colors',
+							'w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default ',
 							{
+								'border-4 transition-colors' : isPlayer,
 								'border-transparent': !card.isCanAttack,
-								'border-green-500': card.isCanAttack,
+								'border-green-500':
+									card.isCanAttack && !(isPlayer && cardAttackerId === card.id) && isPlayer,
+								'border-l-blue-700': isPlayer && cardAttackerId === card.id,
 							}
 						)}
 						key={card.id}
@@ -35,11 +51,7 @@ export function BoardCard({ deck, isPlayer }: Props) {
 						}}
 						animate={{ scale: 1, rotate: 0, y: 0, opacity: 1, x: 0 }}
 						transition={{ type: 'just', stiffness: 300, damping: 30, mass: 1 }}
-						onClick={
-							card.isCanAttack && player
-								? () => console.log('Can Attack')
-								: () => returnCard(card.id)
-						}
+						onClick={() => handleClick(card)}
 					>
 						<img
 							alt={card.name}

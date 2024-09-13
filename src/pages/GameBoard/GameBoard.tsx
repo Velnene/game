@@ -6,11 +6,12 @@ import { Notification } from '../../components/ui/notification/Notification'
 import { MAX_HAND_CARDS, MAX_MANA } from '../../constans/game/core.constants'
 import { PlayerMana } from './player-info/mana/PlayerMana'
 import { EndTurnBotton } from '../../components/ui/button/EndTurnButton'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelectAttacer } from '../../store/select-attacer'
+import { useEnemyTarget } from './board-card/useEnemyTarget'
 
 export function GameBoard() {
 	const { player, opponent, playCard, isGameOver, resetGame } = useGameStore()
-
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			resetGame()
