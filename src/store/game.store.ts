@@ -13,7 +13,10 @@ const initialPlayerData: IHero = {
 	mana: INITIAL_MANA,
 }
 
-const initialGameData: Pick<IGameStore, 'player' | 'opponent' | 'currentTurn' | 'isGameOver' | 'isGameStarted'> = {
+const initialGameData: Pick<
+	IGameStore,
+	'player' | 'opponent' | 'currentTurn' | 'isGameOver' | 'isGameStarted'
+> = {
 	player: initialPlayerData,
 	opponent: initialPlayerData,
 	currentTurn: 'player',
@@ -30,13 +33,12 @@ const useGameStore = create<IGameStore>((set, get) => ({
 		set((state) => playCardAction(state, cardId))
 	},
 	attackCard: (attackerId: number, targetId: number) => {
-		set((state) =>
-			attackCardAction(state, attackerId, targetId,)
-		)
+		set((state) => attackCardAction(state, attackerId, targetId))
 	},
 	attackHero: (attackerId: number) => {
 		set((state) => attackHeroAction(state, attackerId))
 	},
+	resetGame: () => set({ isGameOver: false }),
 }))
- 
+
 export { useGameStore }

@@ -6,9 +6,19 @@ import { Notification } from '../../components/ui/notification/Notification'
 import { MAX_HAND_CARDS, MAX_MANA } from '../../constans/game/core.constants'
 import { PlayerMana } from './player-info/mana/PlayerMana'
 import { EndTurnBotton } from '../../components/ui/button/EndTurnButton'
+import { useEffect } from 'react'
 
 export function GameBoard() {
-	const { player, opponent, playCard, isGameOver } = useGameStore()
+	const { player, opponent, playCard, isGameOver, resetGame } = useGameStore()
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			resetGame()
+		}, 3500)
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [resetGame])
 
 	return (
 		<>
