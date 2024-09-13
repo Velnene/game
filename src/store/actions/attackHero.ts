@@ -30,5 +30,6 @@ export const attackHeroAction = (
 		player: state.player,
 		opponent: state.opponent,
 		isGameOver: state.isGameOver,
+		isGameStarted: false
 	}
 }

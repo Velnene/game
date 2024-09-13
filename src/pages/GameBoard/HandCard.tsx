@@ -6,7 +6,7 @@ import { getSstyleRotation } from './hand-card/get-style-rotation'
 
 interface Props {
 	card: ICard
-	onClick: () => void
+	onClick?: () => void
 	isDisabled?: boolean
 	isHided?: boolean
 	style?: CSSProperties

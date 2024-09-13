@@ -2,19 +2,17 @@ import { useGameStore } from '../../store/game.store'
 import { PlayerInfo } from './PlayerInfo'
 import { HandCard } from './HandCard'
 import { BoardCard } from './board-card/BoardCard'
-import {
-	INITIAL_MANA,
-	MAX_HAND_CARDS,
-	MAX_MANA,
-} from '../../constans/game/core.constants'
+import { Notification } from '../../components/ui/notification/Notification'
+import { MAX_HAND_CARDS, MAX_MANA } from '../../constans/game/core.constants'
 import { PlayerMana } from './player-info/mana/PlayerMana'
 import { EndTurnBotton } from '../../components/ui/button/EndTurnButton'
 
 export function GameBoard() {
-	const { player, opponent, playCard } = useGameStore()
+	const { player, opponent, playCard, isGameOver } = useGameStore()
 
 	return (
 		<>
+			{isGameOver && <Notification>You win</Notification>}
 			<div
 				className='relative h-screen w-full grid grid-rows-2'
 				style={{ gridTemplateRows: '1fr 1fr' }}
@@ -31,10 +29,6 @@ export function GameBoard() {
 									arrayLength={arr.length}
 									index={index}
 									key={card.id}
-									onClick={() => {
-										console.log(card)
-										playCard(card.id)
-									}}
 									isHided
 								/>
 							))}
@@ -57,6 +51,7 @@ export function GameBoard() {
 										arrayLength={arr.length}
 										index={index}
 										key={card.id}
+										isDisabled={card.mana > player.mana}
 										onClick={() => {
 											playCard(card.id)
 										}}
