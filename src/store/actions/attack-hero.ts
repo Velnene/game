@@ -1,6 +1,6 @@
 import { EnumTypeCard } from '../../types/cards'
 import { IGameCard, IGameStore, TPlayer } from '../../types/game.store.types'
-import { getCardById } from './attackCard'
+import { getCardById } from './attack-card'
 
 export const attackHeroAction = (
 	state: IGameStore,
@@ -30,6 +30,6 @@ export const attackHeroAction = (
 		player: state.player,
 		opponent: state.opponent,
 		isGameOver: state.isGameOver,
-		isGameStarted: false
+		isGameStarted: false,
 	}
 }

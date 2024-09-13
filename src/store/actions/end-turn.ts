@@ -1,5 +1,6 @@
 import { MAX_MANA } from '../../constans/game/core.constants'
 import { IGameCard, IGameStore, TPlayer } from '../../types/game.store.types'
+import { drawCardAction } from './draw-card'
 
 const getNewMana = (newTurn: TPlayer, currentTurn: number) => {
 	return newTurn === 'player' ? Math.min(currentTurn, MAX_MANA) : currentTurn
@@ -22,12 +23,20 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
 		player: {
 			...state.player,
 			mana: newPlayerMana,
-			deck: updateAttack(state.player.deck),
+			deck: updateAttack(
+				newTurn === 'player'
+					? drawCardAction(state).updateDeck
+					: state.player.deck
+			),
 		},
 		opponent: {
 			...state.opponent,
 			mana: newOpponentMana,
-			deck: updateAttack(state.opponent.deck),
+			deck: updateAttack(
+				newTurn === 'opponent'
+					? drawCardAction(state).updateDeck
+					: state.opponent.deck
+			),
 		},
 		turn: state.turn + 1,
 	}
