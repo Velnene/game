@@ -5,25 +5,8 @@ import { endTurnAction } from './actions/endTurn'
 import { playCardAction } from './actions/playCard'
 import { attackCardAction } from './actions/attackCard'
 import { attackHeroAction } from './actions/attackHero'
-import { INITIAL_HP, INITIAL_MANA } from '../constans/game/core.constants'
 import { returnCardAction } from './actions/return-card'
-
-const initialPlayerData: IHero = {
-	deck: createDeck(),
-	health: INITIAL_HP,
-	mana: INITIAL_MANA,
-}
-
-const initialGameData: Pick<
-	IGameStore,
-	'player' | 'opponent' | 'currentTurn' | 'isGameOver' | 'isGameStarted'
-> = {
-	player: initialPlayerData,
-	opponent: initialPlayerData,
-	currentTurn: 'player',
-	isGameOver: false,
-	isGameStarted: true,
-}
+import { initialGameData } from './initial-data'
 
 const useGameStore = create<IGameStore>((set, get) => ({
 	...initialGameData,
