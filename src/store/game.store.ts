@@ -6,6 +6,7 @@ import { playCardAction } from './actions/playCard'
 import { attackCardAction } from './actions/attackCard'
 import { attackHeroAction } from './actions/attackHero'
 import { INITIAL_HP, INITIAL_MANA } from '../constans/game/core.constants'
+import { returnCardAction } from './actions/return-card'
 
 const initialPlayerData: IHero = {
 	deck: createDeck(),
@@ -31,6 +32,9 @@ const useGameStore = create<IGameStore>((set, get) => ({
 	endTurn: () => set(endTurnAction(get)),
 	playCard: (cardId: number) => {
 		set((state) => playCardAction(state, cardId))
+	},
+	returnCard: (cardId: number) => {
+		set((state) => returnCardAction(state, cardId))
 	},
 	attackCard: (attackerId: number, targetId: number) => {
 		set((state) => attackCardAction(state, attackerId, targetId))

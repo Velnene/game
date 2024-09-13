@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { IGameCard } from '../../../types/game.store.types'
 import cn from 'clsx'
+import { useGameStore } from '../../../store/game.store'
 
 interface Props {
 	deck: IGameCard[]
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export function BoardCard({ deck, isPlayer }: Props) {
+	const { returnCard, player } = useGameStore()
+
 	const showCard = isPlayer ? 200 : -200
 	return (
 		<div className='flex justify-center'>
@@ -32,6 +35,11 @@ export function BoardCard({ deck, isPlayer }: Props) {
 						}}
 						animate={{ scale: 1, rotate: 0, y: 0, opacity: 1, x: 0 }}
 						transition={{ type: 'just', stiffness: 300, damping: 30, mass: 1 }}
+						onClick={
+							card.isCanAttack && player
+								? () => console.log('Can Attack')
+								: () => returnCard(card.id)
+						}
 					>
 						<img
 							alt={card.name}
