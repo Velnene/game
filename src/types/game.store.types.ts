@@ -1,9 +1,11 @@
+import { initial } from 'lodash'
 import { ICard } from './cards'
 
 export type TPlayer = 'player' | 'opponent'
 
 export interface IGameCard extends ICard {
 	id: number
+	isOnHand: boolean,
 	isOnBoard: boolean
 	isCanAttack: boolean
 }

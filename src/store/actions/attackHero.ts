@@ -10,12 +10,12 @@ export const attackHeroAction = (
 
 	const attacker = getCardById(
 		attackerId,
-		isAttackerPlayer ? state.opponent.deck : state.player.deck
+		!isAttackerPlayer ? state.opponent.deck : state.player.deck
 	)
 
 	const opponent = state[isAttackerPlayer ? 'opponent' : 'player']
 	const opponentTount = opponent.deck.find(
-		(card) => card.type === EnumTypeCard.taunt
+		(card) => card.type === EnumTypeCard.taunt && card.isOnBoard
 	)
 
 	if (attacker && attacker.isCanAttack && !opponentTount) {

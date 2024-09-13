@@ -9,7 +9,8 @@ export const playCardAction = (
 	const currentCard = currentPlayer.deck.find((card) => card.id === cardId)
 	if (currentCard && currentPlayer.mana >= currentCard?.mana) {
 		currentCard.isOnBoard = true
+		currentCard.isOnHand = false
 		currentPlayer.mana -= currentCard.mana
 	}
-  return isPlayerTurn ? {player: currentPlayer} : {opponent: currentPlayer }
+	return isPlayerTurn ? { player: currentPlayer } : { opponent: currentPlayer }
 }

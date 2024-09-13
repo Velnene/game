@@ -10,6 +10,7 @@ export const returnCardAction = (
 
 	if (currentCard && currentCard.isOnBoard) {
 		currentCard.isOnBoard = false
+    currentCard.isOnHand = true
 		currentPlayer.mana += currentCard.mana
 	}
 	return isPlayerTurn ? { player: currentPlayer } : { opponent: currentPlayer }

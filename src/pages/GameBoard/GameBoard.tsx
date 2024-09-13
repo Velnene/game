@@ -31,8 +31,7 @@ export function GameBoard() {
 					<PlayerInfo player={opponent} typePlayer='opponent' />
 					<div className='flex justify-center'>
 						{opponent.deck
-							.filter((card) => !card.isOnBoard)
-							.slice(0, MAX_HAND_CARDS)
+							.filter((card) => card.isOnHand)
 							.map((card, index, arr) => (
 								<HandCard
 									card={card}
@@ -53,8 +52,7 @@ export function GameBoard() {
 					<div className='bottom-0 absolute w-full'>
 						<div className='flex relative justify-center mx-auto'>
 							{player.deck
-								.filter((card) => !card.isOnBoard)
-								.slice(0, MAX_HAND_CARDS)
+								.filter((card) => card.isOnHand)
 								.map((card, index, arr) => (
 									<HandCard
 										card={card}

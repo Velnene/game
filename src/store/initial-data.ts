@@ -7,7 +7,7 @@ import {
 import { createDeck } from './createDeck'
 
 export const initialPlayerData: IHero = {
-	deck: createDeck(),
+	deck: [],
 	health: INITIAL_HP,
 	mana: INITIAL_MANA,
 }

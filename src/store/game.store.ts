@@ -7,11 +7,12 @@ import { attackCardAction } from './actions/attackCard'
 import { attackHeroAction } from './actions/attackHero'
 import { returnCardAction } from './actions/return-card'
 import { initialGameData } from './initial-data'
+import { startGameAction } from './actions/start-game'
 
 const useGameStore = create<IGameStore>((set, get) => ({
 	...initialGameData,
 	isGameStarted: false,
-	startGame: () => set(initialGameData),
+	startGame: () => set(startGameAction),
 	endTurn: () => set(endTurnAction(get)),
 	playCard: (cardId: number) => {
 		set((state) => playCardAction(state, cardId))

@@ -11,11 +11,11 @@ export const attackCardAction = (
 	const isAttackerPlayer = state.currentTurn === 'player'
 	const attacker = getCardById(
 		attackerId,
-		isAttackerPlayer ? state.opponent.deck : state.player.deck
+		!isAttackerPlayer ? state.opponent.deck : state.player.deck
 	)
 	const target = getCardById(
 		targetId,
-		isAttackerPlayer ? state.opponent.deck : state.player.deck
+		!isAttackerPlayer ? state.opponent.deck : state.player.deck
 	)
 
 	if (attacker && target && attacker.isCanAttack) {
