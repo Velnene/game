@@ -9,21 +9,15 @@ import { EndTurnBotton } from '../../components/ui/button/EndTurnButton'
 import { useEffect, useState } from 'react'
 import { useSelectAttacer } from '../../store/select-attacer'
 import { useEnemyTarget } from './board-card/useEnemyTarget'
+import { useNotificationStore } from '../../store/notification/notification.store'
 
 export function GameBoard() {
 	const { player, opponent, playCard, isGameOver, resetGame } = useGameStore()
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			resetGame()
-		}, 3500)
-		return () => {
-			clearTimeout(timeout)
-		}
-	}, [resetGame])
+const {messege} = useNotificationStore()
 
 	return (
 		<>
-			{isGameOver && <Notification>You win</Notification>}
+			<Notification/>
 			<div
 				className='relative h-screen w-full grid grid-rows-2'
 				style={{ gridTemplateRows: '1fr 1fr' }}

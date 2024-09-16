@@ -1,14 +1,22 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+import { useNotificationStore } from '../../../store/notification/notification.store'
+import cn from 'clsx'
 
-interface Props {
-	children: React.ReactNode
-}
-export function Notification({ children }: Props) {
-	return (
-		<div className='fixed z-50 w-full left-0 top-1/2'>
+export function Notification() {
+	const { messege, type } = useNotificationStore()
+
+	return  !!messege && (
+
+		<div className='fixed z-50 w-full left-0 top-10'>
 			<motion.div
-				className='rounded-xl text-white py-2 px-4 mx-auto bg-orange-600 w-max'
+				className={cn(
+					'rounded-xl text-white py-2 px-4 mx-auto w-max',
+					{
+						'bg-green-500': type === 'win',
+						'bg-red-500': type === 'lose',
+						' bg-slate-500' : type === 'info'
+					}
+				)}
 				initial={{
 					scale: 0.5,
 					y: 20,
@@ -19,7 +27,7 @@ export function Notification({ children }: Props) {
 				animate={{ scale: 1, rotate: 0, y: 0, opacity: 1, x: 0 }}
 				transition={{ type: 'just', stiffness: 300, damping: 30, mass: 1 }}
 			>
-				{children}
+				{messege}
 			</motion.div>
 		</div>
 	)

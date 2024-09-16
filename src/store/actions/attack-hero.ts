@@ -1,5 +1,6 @@
 import { EnumTypeCard } from '../../types/cards'
 import { IGameCard, IGameStore, TPlayer } from '../../types/game.store.types'
+import { useNotificationStore } from '../notification/notification.store'
 import { getCardById } from './attack-card'
 
 export const attackHeroAction = (
@@ -21,10 +22,11 @@ export const attackHeroAction = (
 	if (attacker && attacker.isCanAttack && !opponentTount) {
 		opponent.health -= attacker.attack
 		attacker.isCanAttack = false
-console.log(opponent.health)
+		console.log(opponent.health)
 		if (opponent.health <= 0) {
 			state.isGameOver = true
 			state.isGameStarted = false
+			useNotificationStore.getState().show(isAttackerPlayer ? 'You win' : 'you lose', isAttackerPlayer ? 'win' : "lose")
 		}
 	}
 	return {

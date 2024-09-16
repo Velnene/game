@@ -3,8 +3,10 @@ import { Butoon } from '../../components/ui/button/Button'
 import { useGameStore } from '../../store/game.store'
 import { AudioPlayer } from '../GameBoard/audio-player/AudioPlayer'
 import { MyLoader } from '../../components/ui/loader/Loader'
-
+import { Notification } from '../../components/ui/notification/Notification'
 export function Home() {
+		const { player, opponent, playCard, isGameOver, resetGame } = useGameStore()
+
 	const [isPending, startTransition] = useTransition()
 
 	const { startGame } = useGameStore()
@@ -23,6 +25,7 @@ export function Home() {
 				<AudioPlayer />
 				<div className='card'></div>
 			</div>
+			{isGameOver && <Notification></Notification>}
 		</div>
 	)
 }
