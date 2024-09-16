@@ -1,9 +1,9 @@
 import cn from 'clsx'
 import { ReactNode } from 'react'
 import style from './Button.module.scss'
-interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode
-	variant: 'primary' | 'secondary'
+	variant: 'primary' | 'secondary' | 'disabled'
 	isCircle?: boolean
 }
 
