@@ -8,6 +8,7 @@ import {
 import { IHero, TPlayer } from '../../types/game.store.types'
 import cn from 'clsx'
 import { useEnemyTarget } from './board-card/useEnemyTarget'
+import { useGameStore } from '../../store/game.store'
 
 interface Props {
 	player: Omit<IHero, 'deck'>
@@ -15,10 +16,18 @@ interface Props {
 }
 export function PlayerInfo({ player, typePlayer }: Props) {
 	const { handleSelectTarget } = useEnemyTarget()
+<<<<<<< HEAD
 	const isPalyer = typePlayer === 'player'
 	return (
 		<button
 			disabled={isPalyer}
+=======
+	const { isPlayerTurn } = useGameStore()
+	const isPalyer = typePlayer === 'player'
+	return (
+		<button
+			disabled={isPalyer || !isPlayerTurn}
+>>>>>>> 104ee9e15f08bfb96bfbacee7f31bf5f14450529
 			onClick={
 				isPalyer
 					? () => null
