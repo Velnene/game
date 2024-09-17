@@ -11,13 +11,12 @@ const updateAttack = (deck: IGameCard[]) =>
 	deck.map((card) => ({
 		...card,
 		isCanAttack: card.isOnBoard,
-		isPlayedThisTurn: false
+		isPlayedThisTurn: false,
 	}))
 
 export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
 	const state = get()
-	const newTurn: TPlayer =
-		state.currentTurn === 'player' ? 'opponent' : 'player'
+	const newTurn: TPlayer = state.isPlayerTurn ? 'opponent' : 'player'
 	const newPlayerMana = getNewMana('player', state.turn)
 	const newOpponentMana = getNewMana('opponent', state.turn)
 	if (newTurn === 'player') {

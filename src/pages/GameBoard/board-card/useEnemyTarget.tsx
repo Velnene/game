@@ -2,11 +2,12 @@ import { useGameStore } from '../../../store/game.store'
 import { useSelectAttacer } from '../../../store/select-attacer'
 
 export function useEnemyTarget() {
-  const {attackHero, attackCard} = useGameStore()
+	const { attackHero, attackCard, isPlayerTurn } = useGameStore()
 	const { cardAttackerId, setCardAttacerrId } = useSelectAttacer()
 
 	const handleSelectTarget = (targetId?: number, isHero = false) => {
 		if (!cardAttackerId) return
+		if (!isPlayerTurn) return
 
 		if (isHero) {
 			attackHero(cardAttackerId)
@@ -16,5 +17,5 @@ export function useEnemyTarget() {
 
 		setCardAttacerrId(null)
 	}
-  return {handleSelectTarget}
+	return { handleSelectTarget }
 }

@@ -7,7 +7,7 @@ export const attackHeroAction = (
 	state: IGameStore,
 	attackerId: number
 ): Partial<IGameStore> => {
-	const isAttackerPlayer = state.currentTurn === 'player'
+	const isAttackerPlayer = state.isPlayerTurn
 
 	const attacker = getCardById(
 		attackerId,

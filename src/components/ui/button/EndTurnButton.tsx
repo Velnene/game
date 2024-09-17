@@ -2,8 +2,8 @@ import { useGameStore } from '../../../store/game.store'
 import { Butoon } from './Button'
 
 export function EndTurnBotton() {
-	const { endTurn, currentTurn } = useGameStore()
-	const isOpponentTurn = currentTurn === 'opponent'
+	const { endTurn, isPlayerTurn } = useGameStore()
+	const isOpponentTurn = !isPlayerTurn
 	return (
 		<Butoon
 			className='absolute top-[49%] right-2 z-10'

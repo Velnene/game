@@ -11,16 +11,17 @@ interface Props {
 }
 
 export function BoardCard({ deck, isPlayer }: Props) {
-	const { returnCard, player } = useGameStore()
+	const { returnCard, player, isPlayerTurn } = useGameStore()
 	const { handleSelectTarget } = useEnemyTarget()
 	const { setCardAttacerrId, cardAttackerId } = useSelectAttacer()
 	const showCard = isPlayer ? 200 : -200
 
 	const handleClick = (card: IGameCard) => {
+		if (!isPlayerTurn) return
 		if (isPlayer) {
 			if (card.isCanAttack && player) {
 				setCardAttacerrId(card.id)
-			} else if(card.isPlayedThisTurn) {
+			} else if (card.isPlayedThisTurn) {
 				returnCard(card.id)
 			}
 		} else {
@@ -35,7 +36,7 @@ export function BoardCard({ deck, isPlayer }: Props) {
 					<motion.button
 						className={cn(
 							'w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default ',
-							{
+							isPlayerTurn && {
 								'border-4 transition-colors': isPlayer,
 								'border-transparent': !card.isCanAttack,
 								'border-green-500':

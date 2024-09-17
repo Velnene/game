@@ -35,4 +35,5 @@ export interface IGameStore extends IGameFunctionStore {
 	opponent: IHero
 	currentTurn: TPlayer
 	turn: number
+	isPlayerTurn: boolean
 }
