@@ -11,6 +11,7 @@ const updateAttack = (deck: IGameCard[]) =>
 	deck.map((card) => ({
 		...card,
 		isCanAttack: card.isOnBoard,
+		isPlayedThisTurn: false
 	}))
 
 export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {

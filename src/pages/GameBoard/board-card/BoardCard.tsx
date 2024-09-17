@@ -18,9 +18,11 @@ export function BoardCard({ deck, isPlayer }: Props) {
 
 	const handleClick = (card: IGameCard) => {
 		if (isPlayer) {
-			card.isCanAttack && player
-				? setCardAttacerrId(card.id)
-				: returnCard(card.id)
+			if (card.isCanAttack && player) {
+				setCardAttacerrId(card.id)
+			} else if(card.isPlayedThisTurn) {
+				returnCard(card.id)
+			}
 		} else {
 			handleSelectTarget(card.id)
 		}
@@ -34,10 +36,12 @@ export function BoardCard({ deck, isPlayer }: Props) {
 						className={cn(
 							'w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default ',
 							{
-								'border-4 transition-colors' : isPlayer,
+								'border-4 transition-colors': isPlayer,
 								'border-transparent': !card.isCanAttack,
 								'border-green-500':
-									card.isCanAttack && !(isPlayer && cardAttackerId === card.id) && isPlayer,
+									card.isCanAttack &&
+									!(isPlayer && cardAttackerId === card.id) &&
+									isPlayer,
 								'border-l-blue-700': isPlayer && cardAttackerId === card.id,
 							}
 						)}

@@ -9,6 +9,7 @@ export interface IGameCard extends ICard {
 	isTaken: boolean,
 	isOnBoard: boolean,
 	isCanAttack: boolean,
+	isPlayedThisTurn: boolean,
 }
 
 export interface IHero {

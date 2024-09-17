@@ -4,7 +4,6 @@ import {
 	IGameStore,
 	IHero,
 } from '../types/game.store.types'
-import { createDeck } from './createDeck'
 
 export const initialPlayerData: IHero = {
 	deck: [],
