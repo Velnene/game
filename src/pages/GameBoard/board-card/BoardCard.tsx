@@ -34,15 +34,15 @@ export function BoardCard({ deck, isPlayer }: Props) {
 				.map((card) => (
 					<motion.button
 						className={cn(
-							'w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default ',
+							'w-32 bg-yellow-300 shadow mx-1 flex justify-center items-center cursor-default border-4 transition-colors',
 							{
-								'border-4 transition-colors': isPlayer,
 								'border-transparent': !card.isCanAttack,
-								'border-green-500':
+								'!border-green-500':
 									card.isCanAttack &&
 									!(isPlayer && cardAttackerId === card.id) &&
 									isPlayer,
-								'border-l-blue-700': isPlayer && cardAttackerId === card.id,
+								'!border-l-blue-700': isPlayer && cardAttackerId === card.id,
+								'!border-red-500': !isPlayer && cardAttackerId
 							}
 						)}
 						key={card.id}

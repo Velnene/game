@@ -9,5 +9,6 @@ export function createDeck(): IGameCard[] {
 		id: index + 1,
 		isOnBoard: false,
 		isCanAttack: false,
+		isPlayedThisTurn: false,
 	}))
 }

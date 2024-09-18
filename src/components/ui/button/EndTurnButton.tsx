@@ -7,10 +7,11 @@ export function EndTurnBotton() {
 	return (
 		<Butoon
 			className='absolute top-[49%] right-2 z-10'
-			variant={isOpponentTurn ? 'disabled' : 'disabled'}
+			variant={isOpponentTurn ? 'disabled' : 'primary'}
 			isCircle
-			onClick={isOpponentTurn ? () => null : endTurn}
-			disabled={isOpponentTurn}
+			// onClick={isOpponentTurn ? () => null : endTurn}
+			onClick={endTurn}
+			// disabled={isOpponentTurn}
 		>
 			End Turn
 		</Butoon>

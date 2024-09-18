@@ -8,6 +8,8 @@ import {
 import { IHero, TPlayer } from '../../types/game.store.types'
 import cn from 'clsx'
 import { useEnemyTarget } from './board-card/useEnemyTarget'
+import { useSelectAttacer } from '../../store/select-attacer'
+import { EnumTypeCard } from '../../types/cards'
 import { useGameStore } from '../../store/game.store'
 
 interface Props {
@@ -15,32 +17,35 @@ interface Props {
 	typePlayer: TPlayer
 }
 export function PlayerInfo({ player, typePlayer }: Props) {
+	const { cardAttackerId } = useSelectAttacer()
 	const { handleSelectTarget } = useEnemyTarget()
-<<<<<<< HEAD
-	const isPalyer = typePlayer === 'player'
+	const { opponent } = useGameStore()
+	const isPlayer = typePlayer === 'player'
+
+	const opponentTaunt = opponent.deck.find(
+		(card) => card.type === EnumTypeCard.taunt && card.isOnBoard
+	)
+
 	return (
 		<button
-			disabled={isPalyer}
-=======
-	const { isPlayerTurn } = useGameStore()
-	const isPalyer = typePlayer === 'player'
-	return (
-		<button
-			disabled={isPalyer || !isPlayerTurn}
->>>>>>> 104ee9e15f08bfb96bfbacee7f31bf5f14450529
+			disabled={isPlayer}
 			onClick={
-				isPalyer
+				isPlayer
 					? () => null
 					: () => {
 							handleSelectTarget(undefined, true)
 						}
 			}
-			className={cn('absolute left-3', {
-				'bottom-10': isPalyer,
-				'top-10': !isPalyer,
-			})}
+			className={cn(
+				'absolute left-3 border-2 border-transparent transition-colors',
+				{
+					'bottom-10': isPlayer,
+					'top-10': !isPlayer,
+					'!border-red-500': !isPlayer && cardAttackerId && !opponentTaunt,
+				}
+			)}
 		>
-			<h2>{isPalyer ? 'Player' : 'Opponent'}</h2>
+			<h2>{isPlayer ? 'Player' : 'Opponent'}</h2>
 			<Badge value={player.health} maxValue={MAX_HP} color='red' />
 		</button>
 	)
