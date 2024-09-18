@@ -3,6 +3,7 @@ import { ICard } from '../../types/cards'
 import cn from 'clsx'
 import { motion } from 'framer-motion'
 import { getSstyleRotation } from './hand-card/get-style-rotation'
+import { useGameStore } from '../../store/game.store'
 
 interface Props {
 	card: ICard
@@ -25,11 +26,16 @@ export function HandCard({
 }: Props) {
 	const [isHovered, setIsHovered] = useState(false)
 	const { rotate, translateY } = getSstyleRotation(index, arrayLength, !isHided)
+	const { currentTurn } = useGameStore()
+
 	return (
 		<motion.button
 			className={cn(
 				' w-40 bg-yellow-300 inline-block shadow -ml-9 rounded-lg',
-				{ 'opacity-50': isDisabled, 'cursor-default': isHided }
+				{
+					'opacity-50': isDisabled,
+					'cursor-default': isHided,
+				}
 			)}
 			style={style}
 			disabled={isDisabled}

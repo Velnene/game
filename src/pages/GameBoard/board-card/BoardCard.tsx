@@ -42,7 +42,7 @@ export function BoardCard({ deck, isPlayer }: Props) {
 									!(isPlayer && cardAttackerId === card.id) &&
 									isPlayer,
 								'!border-l-blue-700': isPlayer && cardAttackerId === card.id,
-								'!border-red-500': !isPlayer && cardAttackerId
+								'!border-red-500': !isPlayer && cardAttackerId,
 							}
 						)}
 						key={card.id}
@@ -55,7 +55,7 @@ export function BoardCard({ deck, isPlayer }: Props) {
 						}}
 						animate={{ scale: 1, rotate: 0, y: 0, opacity: 1, x: 0 }}
 						transition={{ type: 'just', stiffness: 300, damping: 30, mass: 1 }}
-						onClick={() => handleClick(card)}
+						onClick={() => !isPlayer ? null : handleClick(card)}
 					>
 						<img
 							alt={card.name}

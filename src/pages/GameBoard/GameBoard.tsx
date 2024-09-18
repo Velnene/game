@@ -3,21 +3,16 @@ import { PlayerInfo } from './PlayerInfo'
 import { HandCard } from './HandCard'
 import { BoardCard } from './board-card/BoardCard'
 import { Notification } from '../../components/ui/notification/Notification'
-import { MAX_HAND_CARDS, MAX_MANA } from '../../constans/game/core.constants'
+import { MAX_MANA } from '../../constans/game/core.constants'
 import { PlayerMana } from './player-info/mana/PlayerMana'
 import { EndTurnBotton } from '../../components/ui/button/EndTurnButton'
-import { useEffect, useState } from 'react'
-import { useSelectAttacer } from '../../store/select-attacer'
-import { useEnemyTarget } from './board-card/useEnemyTarget'
-import { useNotificationStore } from '../../store/notification/notification.store'
 
 export function GameBoard() {
-	const { player, opponent, playCard, isGameOver, resetGame } = useGameStore()
-const {messege} = useNotificationStore()
-
+	const { player, opponent, playCard } = useGameStore()
+	const { currentTurn } = useGameStore()
 	return (
 		<>
-			<Notification/>
+			<Notification />
 			<div
 				className='relative h-screen w-full grid grid-rows-2'
 				style={{ gridTemplateRows: '1fr 1fr' }}
@@ -54,7 +49,9 @@ const {messege} = useNotificationStore()
 										arrayLength={arr.length}
 										index={index}
 										key={card.id}
-										isDisabled={card.mana > player.mana}
+										isDisabled={
+											card.mana > player.mana || currentTurn === 'opponent'
+										}
 										onClick={() => {
 											playCard(card.id)
 										}}
