@@ -3,25 +3,31 @@ import { IGameCard, IGameStore, TPlayer } from '../../types/game.store.types'
 import { useNotificationStore } from '../notification/notification.store'
 import { drawCardAction } from './draw-card'
 
-const getNewMana = (newTurn: TPlayer, currentTurn: number) => {
-	return newTurn === 'player' ? Math.min(currentTurn, MAX_MANA) : currentTurn
+const getNewMana = (currentTurn: number) => {
+	return Math.min(currentTurn, MAX_MANA)
 }
 
 const updateAttack = (deck: IGameCard[]) =>
 	deck.map((card) => ({
 		...card,
 		isCanAttack: card.isOnBoard,
-		isPlayedThisTurn: false
+		isPlayedThisTurn: false,
 	}))
 
 export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
 	const state = get()
 	const newTurn: TPlayer =
 		state.currentTurn === 'player' ? 'opponent' : 'player'
-	const newPlayerMana = getNewMana('player', state.turn)
-	const newOpponentMana = getNewMana('opponent', state.turn)
-	if (newTurn === 'player') {
+
+	const isNewTurnPlayer = newTurn === 'player'
+	const newTurnNumber = isNewTurnPlayer ? state.turn + 1 : state.turn
+	let newPlayerMana = state.player.mana
+	let newOpponentMana = state.opponent.mana
+	if (isNewTurnPlayer) {
+		newPlayerMana = getNewMana(newTurnNumber)
 		useNotificationStore.getState().show('Yoyr Turn')
+	} else {
+		newOpponentMana = getNewMana(newTurnNumber)
 	}
 
 	return {
@@ -30,20 +36,18 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
 			...state.player,
 			mana: newPlayerMana,
 			deck: updateAttack(
-				newTurn === 'player'
-					? drawCardAction(state).updateDeck
-					: state.player.deck
+				isNewTurnPlayer ? drawCardAction(state).updateDeck : state.player.deck
 			),
 		},
 		opponent: {
 			...state.opponent,
 			mana: newOpponentMana,
 			deck: updateAttack(
-				newTurn === 'opponent'
+				!isNewTurnPlayer
 					? drawCardAction(state).updateDeck
 					: state.opponent.deck
 			),
 		},
-		turn: state.turn + 1,
+		turn: newTurnNumber,
 	}
 }
